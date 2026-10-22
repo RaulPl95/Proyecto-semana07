@@ -1,0 +1,65 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="report_booksindicator" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fd565dba-2751-42bd-b30e-1ca3881b44ec">
+	<parameter name="usuario" class="java.lang.String"/>
+	<query language="sql"><![CDATA[]]></query>
+	<field name="idEditorial" class="java.lang.Long"/>
+	<field name="nombreEditorial" class="java.lang.String"/>
+	<field name="cantidadLibros" class="java.lang.Long"/>
+	<background/>
+	<title height="72">
+		<element kind="frame" uuid="0fd4886c-ea8c-4edc-910b-6fa0761a0b1d" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="b20eb7ab-94b7-4fbe-a189-406dd1aafa08" x="20" y="20" width="380" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[Reporte Editorial]]></text>
+			</element>
+			<element kind="textField" uuid="55e884cb-48b9-404c-9cd4-3964edd51a4d" x="480" y="31" width="100" height="30" forecolor="rgba(255, 252, 252, 0.5882353)" fontSize="13.0" bold="true" hTextAlign="Right" vTextAlign="Middle">
+				<expression><![CDATA[$P{usuario}]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="21">
+		<element kind="line" uuid="87a7e1e6-e0e6-4f3c-898f-e6712017a619" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+		<element kind="staticText" uuid="f6131f51-5e8f-4ba8-b577-500d580854fa" x="0" y="0" width="100" height="21">
+			<text><![CDATA[idEditorial]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c091018e-6355-480d-8674-bc02c484956b"/>
+		</element>
+		<element kind="staticText" uuid="32605b04-8927-4b2f-ad0d-df662942e626" x="110" y="-4" width="100" height="21">
+			<text><![CDATA[nombreEditorial]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4c7cafd-d46c-418f-a76f-722e58832520"/>
+		</element>
+		<element kind="staticText" uuid="6ea7f24f-2d51-4a8d-8a57-462ac9d4617a" x="420" y="0" width="100" height="21">
+			<text><![CDATA[cantidadLibros]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="050f98dd-180c-4b1a-a22b-8d08d0f23a2b"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="44">
+			<element kind="line" uuid="e6c1aa96-62e5-413c-8f2b-8b8fbed2c8d5" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			<element kind="textField" uuid="bd488c2b-c67d-4d36-b6d8-c5995541cff1" x="0" y="10" width="100" height="30">
+				<expression><![CDATA[$F{idEditorial}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c091018e-6355-480d-8674-bc02c484956b"/>
+			</element>
+			<element kind="textField" uuid="7b60941b-0f25-46d2-8d8c-7a641d70b0bb" x="110" y="10" width="100" height="30">
+				<expression><![CDATA[$F{nombreEditorial}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b4c7cafd-d46c-418f-a76f-722e58832520"/>
+			</element>
+			<element kind="textField" uuid="afec8220-6004-46f9-86bd-a5c3065a71a6" x="420" y="10" width="100" height="30">
+				<expression><![CDATA[$F{cantidadLibros}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="050f98dd-180c-4b1a-a22b-8d08d0f23a2b"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter height="17">
+		<element kind="textField" uuid="3e85feeb-24ed-4976-8346-e68d82e06235" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" hTextAlign="Right">
+			<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="1abd887a-76b8-4898-b9c8-7a57a68a8768" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" evaluationTime="Report">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="b3cf1010-de17-488b-8ed4-b507bca66854" x="0" y="4" width="100" height="13" pattern="EEEEE dd MMMMM yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageFooter>
+	<summary/>
+</jasperReport>

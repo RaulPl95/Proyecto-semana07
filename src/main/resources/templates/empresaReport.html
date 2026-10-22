@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<title>Reporte de Empresas</title>
+
+	<style>
+		body {
+			background-color: #f8f9fa;
+		}
+
+		.report-container {
+			max-width: 1000px;
+			margin: 60px auto;
+		}
+
+		.report-card {
+			background-color: white;
+			padding: 35px;
+			border-radius: 10px;
+			border: 1px solid #e9ecef;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		}
+
+		@media print {
+
+			body {
+				background-color: white;
+			}
+
+			.report-container {
+				margin: 0;
+				max-width: 100%;
+			}
+
+			.report-card {
+				border: none;
+				box-shadow: none;
+				padding: 0;
+			}
+
+			.no-print {
+				display: none !important;
+			}
+
+			@page {
+				size: A4;
+				margin: 20mm;
+			}
+
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container report-container">
+
+		<div class="report-card">
+
+			<!-- ENCABEZADO -->
+
+			<div class="d-flex justify-content-between align-items-center mb-4">
+
+				<div>
+
+					<h1 class="h3">
+						Reporte de Empresas
+					</h1>
+
+					<p class="text-muted mb-1">
+						Listado de empresas registradas
+					</p>
+
+					<small class="text-muted">
+						Generado el:
+						<span id="fechaActual"></span>
+					</small>
+
+				</div>
+
+
+				<!-- ÚNICO BOTÓN DE IMPRIMIR -->
+
+				<button onclick="window.print()" class="btn btn-primary no-print">
+
+					🖨 Imprimir
+
+				</button>
+
+			</div>
+
+
+			<!-- TABLA -->
+
+			<table class="table table-bordered">
+
+				<thead class="table-light">
+
+					<tr>
+
+						<th>
+							ID
+						</th>
+
+						<th>
+							Nombre de empresa
+						</th>
+
+					</tr>
+
+				</thead>
+
+
+				<tbody>
+
+					<tr th:each="empresa : ${empresas}">
+
+						<td th:text="${empresa.idEmpresa}">
+							1
+						</td>
+
+						<td th:text="${empresa.nombre}">
+							Google
+						</td>
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+
+			<!-- TOTAL -->
+
+			<div class="text-end mt-3">
+
+				<strong>
+					Total de empresas:
+					<span th:text="${#lists.size(empresas)}">
+						0
+					</span>
+				</strong>
+
+			</div>
+
+
+			<!-- VOLVER -->
+
+			<div class="mt-4 no-print">
+
+				<a th:href="@{/empresa/empresas}" class="btn btn-outline-secondary">
+
+					Volver
+
+				</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- FECHA ACTUAL -->
+
+	<script>
+
+		const ahora = new Date();
+
+		const opciones = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric',
+			hour: '2-digit',
+			minute: '2-digit'
+		};
+
+		document.getElementById("fechaActual").textContent =
+			ahora.toLocaleString('es-PE', opciones);
+
+	</script>
+
+</body>
+
+</html>

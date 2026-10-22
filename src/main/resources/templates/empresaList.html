@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<title>Empresas</title>
+
+	<style>
+		body {
+			background-color: #f8f9fa;
+			color: #212529;
+		}
+
+		.page-container {
+			max-width: 1100px;
+			margin: 60px auto;
+		}
+
+		.page-title {
+			font-weight: 600;
+			margin-bottom: 5px;
+		}
+
+		.page-subtitle {
+			color: #6c757d;
+		}
+
+		.card {
+			border: 1px solid #e9ecef;
+			border-radius: 10px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+			overflow: hidden;
+		}
+
+		.list-header {
+			background-color: #f8f9fa;
+			color: #6c757d;
+			font-size: 0.85rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.03em;
+			padding: 12px 24px;
+		}
+
+		.company-row {
+			background-color: #fff;
+			padding: 17px 24px;
+			border-bottom: 1px solid #f0f0f0;
+			transition: background-color 0.2s ease;
+		}
+
+		.company-row:hover {
+			background-color: #fafafa;
+		}
+
+		.company-row:last-child {
+			border-bottom: none;
+		}
+
+		.company-id {
+			color: #6c757d;
+		}
+
+		.company-name {
+			font-weight: 500;
+		}
+
+		.action-link {
+			text-decoration: none;
+			font-size: 0.9rem;
+			margin-right: 12px;
+		}
+
+		.action-edit {
+			color: #0d6efd;
+		}
+
+		.action-delete {
+			color: #dc3545;
+		}
+
+		.action-link:hover {
+			text-decoration: underline;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container page-container">
+		<!-- ENCABEZADO -->
+		<div class="d-flex justify-content-between align-items-end mb-4">
+
+			<div>
+
+				<h1 class="page-title">
+					Empresas
+				</h1>
+
+				<p class="page-subtitle mb-0">
+					Administración de empresas registradas
+				</p>
+
+			</div>
+
+			<div class="d-flex gap-2">
+
+				<a th:href="@{/empresa/reporte}" class="btn btn-outline-secondary">
+					Generar reporte
+				</a>
+
+				<a th:href="@{/empresa/registrar}" class="btn btn-primary">
+					Registrar empresa
+				</a>
+				
+
+			</div>
+
+		</div>
+		<!-- LISTADO -->
+		<div class="card">
+			<!-- CABECERA -->
+			<div class="row list-header align-items-center">
+
+				<div class="col-md-2">
+					ID
+				</div>
+
+				<div class="col-md-6">
+					Nombre de empresa
+				</div>
+
+				<div class="col-md-4">
+					Acciones
+				</div>
+
+			</div>
+			<!-- EMPRESAS -->
+			<div th:each="empresa : ${empresas}" class="row company-row align-items-center">
+
+				<div class="col-md-2 company-id" th:text="${empresa.idEmpresa}">
+				</div>
+
+				<div class="col-md-6 company-name" th:text="${empresa.nombre}">
+				</div>
+
+				<div class="col-md-4">
+
+					<a th:href="@{/empresa/editar/{id}(id=${empresa.idEmpresa})}" class="action-link action-edit">
+						Editar
+					</a>
+
+					<a th:href="@{/empresa/eliminar/{id}(id=${empresa.idEmpresa})}" class="action-link action-delete"
+						onclick="return confirm('¿Está seguro de eliminar esta empresa?');">
+						Eliminar
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>
