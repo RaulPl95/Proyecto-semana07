@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.cibertec.semana04.model.Libro;
+import com.cibertec.semana04.model.Reporte;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -54,32 +55,24 @@ public class ReporteService {
 			return JasperExportManager.exportReportToPdf(impresion);
 		}
 	}
-	
-	public byte[] generarReporteIndicador() throws Exception {
 
-		// Cargar la plantilla JRXML
+	public byte[] generarReporteIndicador() throws Exception {
 		try (InputStream stream = getClass().getResourceAsStream("/reports/report_booksindicator.jrxml")) {
 
 			if (stream == null) {
 				throw new IllegalStateException("No se encontró report_booksindicator.jrxml en resources/reports");
 			}
 
-			// Compilar la plantilla
 			JasperReport reporte = JasperCompileManager.compileReport(stream);
 
-			// Obtener los libros registrados
-			List<Libro> libros = bibliotecaService.listarLibros();
-
-			// Preparar los datos
-			JRBeanCollectionDataSource datos = new JRBeanCollectionDataSource(libros);
+			List<Reporte> reportes = bibliotecaService.contarLibroPorEditorial();
+			JRBeanCollectionDataSource datos = new JRBeanCollectionDataSource(reportes);
 
 			Map<String, Object> parametros = new HashMap<>();
 			parametros.put("usuario", "Raul Pl");
 
-			// Generar el documento
 			JasperPrint impresion = JasperFillManager.fillReport(reporte, parametros, datos);
 
-			// Exportar a PDF
 			return JasperExportManager.exportReportToPdf(impresion);
 		}
 	}
